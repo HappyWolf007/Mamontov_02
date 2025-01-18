@@ -56,7 +56,7 @@ namespace Mamontov_02.Pages
                 AdsListView.ItemsSource = ads;
             }
          
-           // Обновляем список объявлений при нажатии на кнопку обновления
+
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
