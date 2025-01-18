@@ -1,0 +1,47 @@
+﻿<Page x:Class="Mamontov_02.Pages.AddAdPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Mamontov_02.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddAdPage">
+
+    <Grid Background="#FFB5D5CA">
+ 
+   
+        <!-- Форма для добавления объявления -->
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Height="318" Width="320">
+            <TextBox x:Name="NameTextBox" Width="300" Margin="10" Text="Название"/>
+            <TextBox x:Name="DescriptionTextBox" Width="300" Margin="10" Text="Описание"/>
+            <TextBox x:Name="CostTextBox" Width="300" Margin="10" Text="Стоимость"/>
+
+            <!-- Выбор города -->
+            <ComboBox x:Name="CityComboBox" Width="300" Margin="10">
+                <!-- Сюда будут добавляться города из базы данных -->
+            </ComboBox>
+
+            <!-- Выбор категории -->
+            <ComboBox x:Name="CategoryComboBox" Width="300" Margin="10">
+                <ComboBoxItem Content="Электроника"/>
+                <ComboBoxItem Content="Недвижимость"/>
+                <ComboBoxItem Content="Услуги"/>
+            </ComboBox>
+
+            <!-- Выбор типа объявления -->
+            <ComboBox x:Name="AdsTypeComboBox" Width="300" Margin="10">
+                <ComboBoxItem Content="Продажа"/>
+                <ComboBoxItem Content="Аренда"/>
+                <ComboBoxItem Content="Обмен"/>
+            </ComboBox>
+
+            <!-- Ввод адреса фотографии -->
+            <TextBox x:Name="PhotoTextBox" Width="300" Margin="10" Text="NULL"/>
+
+            <Button x:Name="SaveButton" Content="Сохранить" Width="150" Margin="10" Click="SaveButton_Click"/>
+        </StackPanel>
+
+        <!-- Кнопка отмены -->
+    </Grid>
+</Page>
