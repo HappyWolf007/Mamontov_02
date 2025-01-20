@@ -24,8 +24,19 @@ namespace Mamontov_02.Pages
 
         private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Загружаем объявления на основе выбранной категории
-            LoadAds();
+            if (CategoryComboBox.SelectedIndex == 0)
+            {
+                var ads = Entities.GetContext().Ads.ToList();
+                AdsListView.ItemsSource = ads;
+            }
+            else
+            {
+               
+
+                var ads = Entities.GetContext().Ads.ToList();
+                ads = ads.Where(x => x.CategoryID == CategoryComboBox.SelectedIndex).ToList();
+                AdsListView.ItemsSource = ads;
+            }
         }
 
         private void LoadAds()
@@ -53,6 +64,11 @@ namespace Mamontov_02.Pages
             {
                 var ads = Entities.GetContext().Ads.ToList();
                 ads = ads.Where(x => x.CategoryID == CategoryComboBox.SelectedIndex).ToList();
+                AdsListView.ItemsSource = ads;
+            }
+            else
+            {
+                var ads = Entities.GetContext().Ads.ToList();
                 AdsListView.ItemsSource = ads;
             }
          
