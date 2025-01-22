@@ -24,16 +24,12 @@
 
             <!-- Выбор категории -->
             <ComboBox x:Name="CategoryComboBox" Width="300" Margin="10">
-                <ComboBoxItem Content="Электроника"/>
-                <ComboBoxItem Content="Недвижимость"/>
-                <ComboBoxItem Content="Услуги"/>
+               
             </ComboBox>
 
             <!-- Выбор типа объявления -->
             <ComboBox x:Name="AdsTypeComboBox" Width="300" Margin="10">
-                <ComboBoxItem Content="Продажа"/>
-                <ComboBoxItem Content="Аренда"/>
-                <ComboBoxItem Content="Обмен"/>
+             
             </ComboBox>
 
             <!-- Ввод адреса фотографии -->

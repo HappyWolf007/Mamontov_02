@@ -18,10 +18,12 @@
         <!-- Панель фильтрации и поиска -->
         <!-- Панель фильтрации и поиска -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox x:Name="SearchBox" Width="300" Margin="10" TextChanged="SearchBox_TextChanged" Text="Поиск по названию"/>
-            <ComboBox x:Name="CategoryComboBox"  Grid.Row="0"  Width="182"  IsEnabled="True" Height="21" SelectionChanged="CategoryComboBox_SelectionChanged" />
+            <TextBox x:Name="SearchBox" Width="174" Margin="10" TextChanged="SearchBox_TextChanged" />
+            <ComboBox x:Name="CategoryComboBox"  Width="153" Margin="10" IsEnabled="True" Height="21" SelectionChanged="CategoryComboBox_SelectionChanged" />
+            <ComboBox x:Name="CityComboBox"  Width="148" Margin="10" IsEnabled="True" Height="21"  SelectionChanged="CityComboBox_SelectionChanged"/>
             <Button x:Name="RefreshButton" Content="Обновить" Width="100" Margin="10" Click="RefreshButton_Click"/>
             <Button x:Name="ClearButton" Content="Очистить фильтры" Width="120" Margin="10" Click="ClearButton_Click"/>
+            
         </StackPanel>
 
         <!-- Список объявлений -->
