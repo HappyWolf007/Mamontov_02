@@ -50,13 +50,13 @@
 
             <!-- Категория -->
             <TextBlock Text="Категория" VerticalAlignment="Center" Grid.Row="4" HorizontalAlignment="Right" Margin="10"/>
-            <ComboBox x:Name="CategoryComboBox" Text="{Binding AdsType}" Grid.Row="4" Grid.Column="1" Width="300" Margin="10">
+            <ComboBox x:Name="CategoryComboBox" Text="{Binding Category.Name}" Grid.Row="4" Grid.Column="1" Width="300" Margin="10">
                 <!-- Сюда будут добавляться категории -->
             </ComboBox>
 
             <!-- Тип объявления -->
             <TextBlock Text="Тип объявления" VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Right" Margin="10"/>
-            <ComboBox x:Name="AdsTypeComboBox" Grid.Row="5" Grid.Column="1" Width="300" Margin="10">
+            <ComboBox x:Name="AdsTypeComboBox" Text="{Binding AdsType.Name}" Grid.Row="5" Grid.Column="1" Width="300" Margin="10">
                 <!-- Сюда будут добавляться типы объявлений -->
             </ComboBox>
 

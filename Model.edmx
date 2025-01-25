@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище BD_UP_02_01Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ads">
           <Key>
             <PropertyRef Name="ID" />
@@ -14,17 +14,18 @@
           <Property Name="CityID" Type="int" Nullable="false" />
           <Property Name="Seller" Type="nvarchar" MaxLength="120" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="AdsType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdsTypeID" Type="int" Nullable="false" />
           <Property Name="IsOpen" Type="bit" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="120" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Cost" Type="money" Nullable="false" />
           <Property Name="Photo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Cost" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="AdsType">
           <Key>
-            <PropertyRef Name="Name" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
@@ -64,10 +65,10 @@
           <End Role="Ads" Type="Self.Ads" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AdsType">
-              <PropertyRef Name="Name" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Ads">
-              <PropertyRef Name="AdsType" />
+              <PropertyRef Name="AdsTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -107,7 +108,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище BD_UP_02_01ModelContainer">
+        <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Ads" EntityType="Self.Ads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdsType" EntityType="Self.AdsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -135,7 +136,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BD_UP_02_01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Ads">
           <Key>
             <PropertyRef Name="ID" />
@@ -145,21 +146,22 @@
           <Property Name="CityID" Type="Int32" Nullable="false" />
           <Property Name="Seller" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="AdsType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdsTypeID" Type="Int32" Nullable="false" />
           <Property Name="IsOpen" Type="Boolean" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AdsType1" Relationship="Self.FK_Ads_AdsType" FromRole="Ads" ToRole="AdsType" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="AdsType" Relationship="Self.FK_Ads_AdsType" FromRole="Ads" ToRole="AdsType" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Ads_Category" FromRole="Ads" ToRole="Category" />
           <NavigationProperty Name="City" Relationship="Self.FK_Ads_City" FromRole="Ads" ToRole="City" />
           <NavigationProperty Name="User" Relationship="Self.FK_Ads_User" FromRole="Ads" ToRole="User" />
         </EntityType>
         <EntityType Name="AdsType">
           <Key>
-            <PropertyRef Name="Name" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Ads" Relationship="Self.FK_Ads_AdsType" FromRole="AdsType" ToRole="Ads" />
         </EntityType>
@@ -203,10 +205,10 @@
           <End Role="Ads" Type="Self.Ads" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AdsType">
-              <PropertyRef Name="Name" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Ads">
-              <PropertyRef Name="AdsType" />
+              <PropertyRef Name="AdsTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -275,33 +277,34 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище BD_UP_02_01ModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Ads">
-            <EntityTypeMapping TypeName="BD_UP_02_01Model.Ads">
+            <EntityTypeMapping TypeName="Model.Ads">
               <MappingFragment StoreEntitySet="Ads">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PublicationDate" ColumnName="PublicationDate" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="Seller" ColumnName="Seller" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="AdsType" ColumnName="AdsType" />
+                <ScalarProperty Name="AdsTypeID" ColumnName="AdsTypeID" />
                 <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AdsType">
-            <EntityTypeMapping TypeName="BD_UP_02_01Model.AdsType">
+            <EntityTypeMapping TypeName="Model.AdsType">
               <MappingFragment StoreEntitySet="AdsType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="BD_UP_02_01Model.Category">
+            <EntityTypeMapping TypeName="Model.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -309,7 +312,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="City">
-            <EntityTypeMapping TypeName="BD_UP_02_01Model.City">
+            <EntityTypeMapping TypeName="Model.City">
               <MappingFragment StoreEntitySet="City">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -318,7 +321,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BD_UP_02_01Model.sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -329,7 +332,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="BD_UP_02_01Model.User">
+            <EntityTypeMapping TypeName="Model.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

@@ -32,8 +32,8 @@ namespace Mamontov_02.Pages
 
             // Устанавливаем выбранные значения в ComboBox
             // CityComboBox.SelectedValue = ad.CityID;
-            CategoryComboBox.SelectedValue = ad.CategoryID;
-            AdsTypeComboBox.SelectedValue = ad.AdsType;
+            //CategoryComboBox.SelectedValue = ad.CategoryID;
+            //AdsTypeComboBox.SelectedValue = ad.AdsType;
 
             // Если редактируем существующее объявление, показываем ComboBox для статуса
             if (_adToEdit != null)
@@ -97,6 +97,7 @@ namespace Mamontov_02.Pages
 
             var selectedCityID = ReturnCity(adCity);
             var selectedCategoryID = ReturnCategory(adCategory);
+            var selectedAdsTypeID = ReturnAdsType(adAdsType);
 
 
             // Проверка на статус
@@ -115,7 +116,7 @@ namespace Mamontov_02.Pages
                         currentAd.Cost = adCost;
                         currentAd.Photo = adPhoto;
                         currentAd.CategoryID = selectedCategoryID;
-                        currentAd.AdsType = adAdsType;
+                        currentAd.AdsTypeID = selectedAdsTypeID;
                         currentAd.CityID = selectedCityID;
                         currentAd.IsOpen = isOpen;
                         db.SaveChanges();
@@ -136,7 +137,7 @@ namespace Mamontov_02.Pages
                         Cost = adCost,
                         Photo = adPhoto,
                         CategoryID = selectedCategoryID,
-                        AdsType = adAdsType,
+                        AdsTypeID = selectedAdsTypeID,
                         CityID = selectedCityID,
                         IsOpen = isOpen,
                         PublicationDate = DateTime.Now
@@ -158,6 +159,11 @@ namespace Mamontov_02.Pages
         private int ReturnCategory(string addCategory)
         {
             return Entities.GetContext().Category.Where(x => x.Name == addCategory).Select(u => u.ID).FirstOrDefault();
+        }
+        
+        private int ReturnAdsType(string addAdsType)
+        {
+            return Entities.GetContext().AdsType.Where(x => x.Name == addAdsType).Select(u => u.ID).FirstOrDefault();
         }
     }
 

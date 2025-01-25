@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="302160102c1b4e828b1cf0f44c84d8a5" Name="Diagram1">
-        <EntityTypeShape EntityType="BD_UP_02_01Model.Ads" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_UP_02_01Model.AdsType" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_UP_02_01Model.Category" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_UP_02_01Model.City" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_UP_02_01Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_UP_02_01Model.User" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <AssociationConnector Association="BD_UP_02_01Model.FK_Ads_AdsType" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_UP_02_01Model.FK_Ads_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_UP_02_01Model.FK_Ads_City" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_UP_02_01Model.FK_Ads_User" ManuallyRouted="false" />
+      <Diagram DiagramId="864eb1b741734ac7b623572ffe985dd0" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Ads" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AdsType" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.City" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Ads_AdsType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Ads_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Ads_City" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Ads_User" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
