@@ -25,7 +25,7 @@
             <TextBox x:Name="SearchBox" Width="155" Margin="10" TextChanged="SearchBox_TextChanged" Height="30" FontSize="12"/>
             <ComboBox x:Name="CategoryComboBox"  Width="153" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CategoryComboBox_SelectionChanged" Padding="0"/>
             <ComboBox x:Name="CityComboBox"  Width="148" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CityComboBox_SelectionChanged" Padding="0"/>
-            <Button x:Name="RefreshButton" Content="Обновить" Width="82" Margin="16" Click="RefreshButton_Click"  />
+            <Button x:Name="RefreshButton" Content="Обновить" Width="82" Margin="16" Click="RefreshButton_Click" />
             <Button x:Name="ClearButton" Content="Очистить фильтр" Width="129" Margin="16" Click="ClearButton_Click"/>
 
         </StackPanel>
