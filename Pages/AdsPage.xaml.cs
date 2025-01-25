@@ -123,7 +123,7 @@ namespace Mamontov_02.Pages
 
         private void EditAdButton_Loaded(object sender, RoutedEventArgs e)
         {
-            if (IsAuth.isAuth)
+            if (IsAuth.isAuth || CurrentUser.UserName == null)
             {
                 var button = sender as Button;
                 var ad = button?.DataContext as Ads;
@@ -136,6 +136,13 @@ namespace Mamontov_02.Pages
                 {
                     button.Visibility = Visibility.Collapsed;
                 }
+            }
+            else
+            {
+                var button = sender as Button;
+                var ad = button?.DataContext as Ads;
+                button.Visibility = Visibility.Hidden;
+                
             }
         }
 

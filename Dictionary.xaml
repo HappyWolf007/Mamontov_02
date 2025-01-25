@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Foreground" Value="#FF37474F"></Setter>
+        <Setter Property="Height" Value="38"></Setter>
+        <Setter Property="Padding" Value="10"></Setter>
+
+    </Style>
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Foreground" Value="#FF37474F"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
+        <Setter Property="Height" Value="38"></Setter>
+        <Setter Property="Padding" Value="10"></Setter>
+        
+    </Style>
+    <Style TargetType="TextBox">
+        <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Foreground" Value="#FF37474F"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Height" Value="38"></Setter>
+        <Setter Property="Padding" Value="10"></Setter>
+        
+
+    </Style>
+    <Style TargetType="ComboBox">
+        <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Foreground" Value="#FF37474F"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
+        <Setter Property="Height" Value="38"></Setter>
+        <Setter Property="Padding" Value="10"></Setter>
+
+
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
+        <Setter Property="Background" Value="#FFFF9C1A"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Foreground" Value="#FF37474F"></Setter>
+        <Setter Property="Height" Value="38"></Setter>
+     
+
+    </Style>
+</ResourceDictionary>

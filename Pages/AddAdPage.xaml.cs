@@ -68,7 +68,7 @@ namespace Mamontov_02.Pages
             string adCategory = CategoryComboBox.Text;
             string adAdsType = AdsTypeComboBox.Text;
             string adStatus = StatusComboBox.Text?.ToString();
-
+            if(PhotoTextBox.Text == null) { adPhoto = "NULL"; }
             // Проверка на пустые поля
             if (string.IsNullOrEmpty(adName) || string.IsNullOrEmpty(adDescription) || string.IsNullOrEmpty(adCostText))
             {

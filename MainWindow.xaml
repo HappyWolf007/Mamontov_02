@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mamontov_02"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="#FFB5D5CA">
+        Title="MainWindow" Height="450" Width="815">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="41"/>
+            <RowDefinition Height="51"/>
             <RowDefinition/>
             <RowDefinition Height="19.04"/>
         </Grid.RowDefinitions>
 
-        <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/AuthPage.xaml" Navigated="MainFrame_OnNavigated" NavigationUIVisibility="Hidden"/>
-
-        <Button x:Name="BackButton" Content="Назад" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="80" Height="24" Click="BackButton_Click"/>
+        <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/AdsPage.xaml" Navigated="MainFrame_OnNavigated" NavigationUIVisibility="Hidden"/>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="BackButton" Content="Назад" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="80" Click="BackButton_Click" Foreground="#FF37474F" Background="#FFFF9C1A"/>
+            <Button x:Name="MainPageButton" Content="Главная" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0" Width="80" Click="MainPageButton_Click"/>
+            <Button x:Name="PersonalAccountButton" Content="Личный кабинет" VerticalAlignment="Center" Margin="16,0,0,0" Width="132" Click="PersonalAccountButton_Click"/>
+           
+        </StackPanel>
     </Grid>
 </Window>

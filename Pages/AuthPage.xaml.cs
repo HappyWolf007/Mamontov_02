@@ -65,6 +65,17 @@ namespace Mamontov_02.Pages
             NavigationService?.Navigate(new RegPage());
         }
 
+        private void TextBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(TextBoxLogin.Text.Length > 0) txtHintLogin.Visibility = Visibility.Hidden;
+            else txtHintLogin.Visibility = Visibility.Visible;
+        }
+
+        private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {   if(PasswordBox.Password.Length > 0) 
+                txtHintPassword.Visibility = Visibility.Hidden;
+        }
+
         //public static string GetHash(string password)
         //{
         //    using (var hash = SHA1.Create())

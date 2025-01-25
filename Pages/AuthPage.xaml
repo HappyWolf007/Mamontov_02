@@ -19,13 +19,13 @@
             <ColumnDefinition Width="281*"/>
             <ColumnDefinition Width="204*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Foreground="Gray" Text="Пароль" Grid.Column="2" FontSize="18" x:Name="txtHintPassword" HorizontalAlignment="Center" Margin="0,60,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="246"/>
-        <TextBlock Foreground="Gray" Text="Логин или почта" Grid.Column="2" FontSize="18" x:Name="txtHintLogin" HorizontalAlignment="Center" Margin="0,12,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="246"/>
-        <Label Grid.Column="1" Content="Логин" Grid.Row="1" Height="50" VerticalAlignment="Top"/>
-        <TextBox Background="Transparent" ToolTip="Введите логин или почту" x:Name="TextBoxLogin" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Width="246" Height="30" VerticalAlignment="Top" Margin="0,10,0,0"/>
-        <Label Content="Пароль" Grid.Row="1" Grid.Column="1" Height="42" VerticalAlignment="Top" Margin="0,54,0,0"/>
-        <PasswordBox Background="Transparent" VerticalContentAlignment="Center" FontSize="14" ToolTip="Введите пароль (кликните два раза, чтобы очистить поле)" x:Name="PasswordBox" Grid.Row="1" HorizontalAlignment="Center" Width="246" Grid.Column="2" Height="28" VerticalAlignment="Top" Margin="0,60,0,0"/>
-        <Button x:Name="ButtonEnter" ToolTip="Кнопка для входа в учётную запись" Grid.Column="2" Content="Вход" HorizontalAlignment="Left" Margin="14,104,0,0" Grid.Row="1" VerticalAlignment="Top" Width="137" Height="36" Click="ButtonEnter_Click"/>
-        <Button x:Name="ButtonRegister" ToolTip="Кнопка для регистрации нового пользователя" Grid.Column="2" Content="Регистрация" HorizontalAlignment="Left" Margin="14,146,0,0" Grid.Row="1" Width="137" Height="36" VerticalAlignment="Top" Click="ButtonRegister_Click"/>
+        <TextBlock  Text="Пароль" Grid.Column="2"  x:Name="txtHintPassword" HorizontalAlignment="Center" Margin="0,67,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="246"/>
+        <TextBlock  Text="Логин или почта" Grid.Column="2"  x:Name="txtHintLogin" HorizontalAlignment="Center" Margin="0,16,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="246"/>
+        <Label  Grid.Column="1" Content="Логин" Grid.Row="1" Height="54" VerticalAlignment="Top" Margin="0,4,0,0"/>
+        <TextBox Background="Transparent" ToolTip="Введите логин или почту" x:Name="TextBoxLogin" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Width="246"  VerticalAlignment="Top" Margin="0,13,0,0" TextChanged="TextBoxLogin_TextChanged"/>
+        <Label  Content="Пароль" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0,58,0,0" Height="45"/>
+        <PasswordBox Background="Transparent" VerticalContentAlignment="Center" FontSize="14" ToolTip="Введите пароль (кликните два раза, чтобы очистить поле)" x:Name="PasswordBox" Grid.Row="1" HorizontalAlignment="Center" Width="246" Grid.Column="2" Height="38" VerticalAlignment="Top" Margin="0,65,0,0" KeyDown="PasswordBox_KeyDown"/>
+        <Button x:Name="ButtonEnter" ToolTip="Кнопка для входа в учётную запись" Grid.Column="2" Content="Вход" HorizontalAlignment="Left" Margin="17,123,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136"  Click="ButtonEnter_Click"/>
+        <Button x:Name="ButtonRegister" ToolTip="Кнопка для регистрации нового пользователя" Grid.Column="2" Content="Регистрация" HorizontalAlignment="Left" Margin="17,173,0,0" Grid.Row="1" Width="136"  VerticalAlignment="Top" Click="ButtonRegister_Click"/>
     </Grid>
 </Page>

@@ -27,7 +27,11 @@ namespace Mamontov_02
         public MainWindow()
         {
             InitializeComponent();
+            this.Closing += MainWindow_Closing;
+            
         }
+
+       
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -37,11 +41,37 @@ namespace Mamontov_02
 
         private void MainFrame_OnNavigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
+            string username = CurrentUser.UserName;
+            if (username == null) username = "Пользователь";
             if (!(e.Content is Page page)) return;
-            if (page is AuthPage)
+            this.Title = $"{username} - {page.Title}";
+            if (page is AdsPage)
                 BackButton.Visibility = Visibility.Hidden;
             else
                 BackButton.Visibility = Visibility.Visible;
+        }
+      
+        private void PersonalAccountButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new AuthPage());
+        }
+
+        private void MainPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new AdsPage());
+        } 
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите выйти из приложения?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
+            CurrentUser.UserName = null;
+            IsAuth.isAuth = false;
         }
     }
 }

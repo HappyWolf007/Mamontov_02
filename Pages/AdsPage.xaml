@@ -5,29 +5,33 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Mamontov_02.Pages" xmlns:local1="SellerVisibilityConverter"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="815"
       Title="AdsPage" Loaded="Page_Loaded">
 
-    <Grid Background="#FFB5D5CA">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="381*"/>
+            <ColumnDefinition Width="419*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="54"/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <!-- Панель фильтрации и поиска -->
         <!-- Панель фильтрации и поиска -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox x:Name="SearchBox" Width="174" Margin="10" TextChanged="SearchBox_TextChanged" />
-            <ComboBox x:Name="CategoryComboBox"  Width="153" Margin="10" IsEnabled="True" Height="21" SelectionChanged="CategoryComboBox_SelectionChanged" />
-            <ComboBox x:Name="CityComboBox"  Width="148" Margin="10" IsEnabled="True" Height="21"  SelectionChanged="CityComboBox_SelectionChanged"/>
-            <Button x:Name="RefreshButton" Content="Обновить" Width="100" Margin="10" Click="RefreshButton_Click"/>
-            <Button x:Name="ClearButton" Content="Очистить фильтры" Width="120" Margin="10" Click="ClearButton_Click"/>
-            
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="70" Width="800" Grid.ColumnSpan="2">
+            <TextBox x:Name="SearchBox" Width="155" Margin="10" TextChanged="SearchBox_TextChanged" Height="30" FontSize="12"/>
+            <ComboBox x:Name="CategoryComboBox"  Width="153" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CategoryComboBox_SelectionChanged" Padding="0"/>
+            <ComboBox x:Name="CityComboBox"  Width="148" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CityComboBox_SelectionChanged" Padding="0"/>
+            <Button x:Name="RefreshButton" Content="Обновить" Width="82" Margin="16" Click="RefreshButton_Click"  />
+            <Button x:Name="ClearButton" Content="Очистить фильтр" Width="129" Margin="16" Click="ClearButton_Click"/>
+
         </StackPanel>
 
         <!-- Список объявлений -->
-        <ListView Name="AdsListView" Grid.Row="1" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+        <ListView Name="AdsListView" Grid.Row="1" Margin="16,8,16,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Grid.ColumnSpan="2">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -36,7 +40,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="250" Height="350" Margin="10" Background="White">
+                    <Grid Width="260" Height="400" Margin="5" Background="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="200"/>
@@ -46,6 +50,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="0" TextWrapping="Wrap" Text="{Binding Name}" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+
 
                         <Image Width="250" Height="200" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center">
                             <Image.Source>
@@ -72,9 +77,9 @@
         </ListView>
 
         <!-- Панель для добавления нового объявления -->
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="AddAdButton" Content="Добавить объявление" Width="150" Margin="10" Click="AddAdButton_Click"/>
-            <Button x:Name="ViewCompletedButton" Content="Завершенные объявления" Width="180" Margin="10" Click="ViewCompletedButton_Click"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="60" Width="384" Grid.ColumnSpan="2" Margin="208,0,0,0">
+            <Button x:Name="AddAdButton" Content="Добавить объявление" Width="161"  Click="AddAdButton_Click"/>
+            <Button x:Name="ViewCompletedButton" Content="Завершенные объявления" Width="191" Margin="16,0" Click="ViewCompletedButton_Click"/>
         </StackPanel>
-        </Grid>
+    </Grid>
 </Page>

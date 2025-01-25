@@ -8,9 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CompletedAdsPage">
 
-    <Grid Background="#FFB5D5CA">
+    <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="42"/>
+            <RowDefinition Height="62"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
