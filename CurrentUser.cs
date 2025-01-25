@@ -10,4 +10,8 @@ namespace Mamontov_02
     {
         public static string UserName { get; set; }
     }
+    public static class IsAuth
+    {
+        public static bool isAuth { get; set; }
+    }
 }

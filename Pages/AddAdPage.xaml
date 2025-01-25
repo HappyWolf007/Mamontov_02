@@ -9,35 +9,70 @@
       Title="AddAdPage">
 
     <Grid Background="#FFB5D5CA">
- 
-   
-        <!-- Форма для добавления объявления -->
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Height="318" Width="320">
-            <TextBox x:Name="NameTextBox" Width="300" Margin="10" Text="Название"/>
-            <TextBox x:Name="DescriptionTextBox" Width="300" Margin="10" Text="Описание"/>
-            <TextBox x:Name="CostTextBox" Width="300" Margin="10" Text="Стоимость"/>
+        <!-- Используем Grid с 2 колонками -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-            <!-- Выбор города -->
-            <ComboBox x:Name="CityComboBox" Width="300" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <!-- Ширина для меток -->
+                <ColumnDefinition Width="*"/>
+                <!-- Ширина для полей ввода -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Название -->
+            <TextBlock Text="Название" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+            <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Width="300" Margin="10" Text="Название"/>
+
+            <!-- Описание -->
+            <TextBlock Text="Описание" VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Right" Margin="10"/>
+            <TextBox x:Name="DescriptionTextBox" Grid.Row="1" Grid.Column="1" Width="300" Margin="10" Text="Описание"/>
+
+            <!-- Стоимость -->
+            <TextBlock Text="Стоимость" VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Right" Margin="10"/>
+            <TextBox x:Name="CostTextBox" Grid.Row="2" Grid.Column="1" Width="300" Margin="10" Text="Стоимость"/>
+
+            <!-- Город -->
+            <TextBlock Text="Город" VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Right" Margin="10"/>
+            <ComboBox x:Name="CityComboBox" Text="{Binding City.Name}" Grid.Row="3" Grid.Column="1" Width="300" Margin="10">
                 <!-- Сюда будут добавляться города из базы данных -->
             </ComboBox>
 
-            <!-- Выбор категории -->
-            <ComboBox x:Name="CategoryComboBox" Width="300" Margin="10">
-               
+            <!-- Категория -->
+            <TextBlock Text="Категория" VerticalAlignment="Center" Grid.Row="4" HorizontalAlignment="Right" Margin="10"/>
+            <ComboBox x:Name="CategoryComboBox" Text="{Binding AdsType}" Grid.Row="4" Grid.Column="1" Width="300" Margin="10">
+                <!-- Сюда будут добавляться категории -->
             </ComboBox>
 
-            <!-- Выбор типа объявления -->
-            <ComboBox x:Name="AdsTypeComboBox" Width="300" Margin="10">
-             
+            <!-- Тип объявления -->
+            <TextBlock Text="Тип объявления" VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Right" Margin="10"/>
+            <ComboBox x:Name="AdsTypeComboBox" Grid.Row="5" Grid.Column="1" Width="300" Margin="10">
+                <!-- Сюда будут добавляться типы объявлений -->
             </ComboBox>
 
-            <!-- Ввод адреса фотографии -->
-            <TextBox x:Name="PhotoTextBox" Width="300" Margin="10" Text="NULL"/>
+            <!-- Фото -->
+            <TextBlock Text="Фото" VerticalAlignment="Center" Grid.Row="6" HorizontalAlignment="Right" Margin="10"/>
+            <TextBox x:Name="PhotoTextBox" Grid.Row="6" Grid.Column="1" Width="300" Margin="10" Text="NULL"/>
 
-            <Button x:Name="SaveButton" Content="Сохранить" Width="150" Margin="10" Click="SaveButton_Click"/>
-        </StackPanel>
+            <!-- Статус (только при редактировании) -->
+            <TextBlock Name="StatusTextBlock" Text="Статус" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Grid.Row="7" Visibility="Collapsed"/>
+            <ComboBox x:Name="StatusComboBox" Grid.Row="7" Grid.Column="1" Width="300" Margin="10" Visibility="Collapsed">
+                <ComboBoxItem Content="Открыто"/>
+                <ComboBoxItem Content="Завершено"/>
+            </ComboBox>
 
-        <!-- Кнопка отмены -->
+            <!-- Кнопка сохранения -->
+            <Button x:Name="SaveButton" Content="Сохранить" Width="150" Grid.Row="8" Grid.Column="1" Margin="10" Click="SaveButton_Click"/>
+        </Grid>
     </Grid>
 </Page>

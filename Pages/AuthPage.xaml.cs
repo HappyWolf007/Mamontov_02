@@ -53,7 +53,8 @@ namespace Mamontov_02.Pages
                 else
                 {
                     CurrentUser.UserName = user.Username;
-                    NavigationService?.Navigate(new AdsPage()); // Страница пользователя
+                    NavigationService?.Navigate(new AdsPage()); 
+                    IsAuth.isAuth=true;
                 }
             }
         }

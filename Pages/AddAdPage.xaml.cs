@@ -1,39 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Mamontov_02.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddAdPage.xaml
-    /// </summary>
     public partial class AddAdPage : Page
     {
-        private Ads _adToEdit;  // Объявление для редактирования
-
-        // Конструктор для создания нового объявления
-      
+        private Ads _adToEdit = new Ads();  // Объявление для редактирования
 
         // Конструктор для редактирования существующего объявления
         public AddAdPage(Ads ad)
         {
             InitializeComponent();
+            if (ad != null)
+                _adToEdit = ad;
+            DataContext = ad;
 
-            _adToEdit = ad;
-            LoadCities();
-            LoadCategory();
-            LoadAdsTypes();
+            // LoadCities();
+            CityComboBox.ItemsSource = Entities.GetContext().City.Select(u => u.Name).ToList();
+            CategoryComboBox.ItemsSource = Entities.GetContext().Category.Select(u => u.Name).ToList();
+            AdsTypeComboBox.ItemsSource = Entities.GetContext().AdsType.Select(u => u.Name).ToList();
+            //LoadCategory();
+            //LoadAdsTypes();
 
             // Заполняем поля на основе данных объявления
             NameTextBox.Text = ad.Name;
@@ -42,123 +31,133 @@ namespace Mamontov_02.Pages
             PhotoTextBox.Text = ad.Photo;
 
             // Устанавливаем выбранные значения в ComboBox
-            CityComboBox.SelectedValue = ad.CityID;
-            CategoryComboBox.SelectedValue = ad.CategoryID;  // Или можно использовать индексы, если хотите работать с номерами
+            // CityComboBox.SelectedValue = ad.CityID;
+            CategoryComboBox.SelectedValue = ad.CategoryID;
             AdsTypeComboBox.SelectedValue = ad.AdsType;
+
+            // Если редактируем существующее объявление, показываем ComboBox для статуса
+            if (_adToEdit != null)
+            {
+                StatusComboBox.Visibility = Visibility.Visible;
+                StatusTextBlock.Visibility = Visibility.Visible;
+                // Устанавливаем текущий статус в ComboBox
+                var selectedStatus = ad.IsOpen ? "Открыто" : "Завершено";
+                foreach (var item in StatusComboBox.Items)
+                {
+                    var comboBoxItem = item as ComboBoxItem;
+                    if (comboBoxItem?.Content.ToString() == selectedStatus)
+                    {
+                        StatusComboBox.SelectedItem = comboBoxItem;
+                        break;
+                    }
+                }
+            }
         }
 
-        private void LoadCities()
-        {
-            using (var db = new Entities())
-            {
-                var cities = db.City.ToList();
-                CityComboBox.ItemsSource = cities;
-                CityComboBox.DisplayMemberPath = "Name";
-                CityComboBox.SelectedValuePath = "ID";
-            }
-        }
-        private void LoadCategory()
-        {
-            using (var db = new Entities())
-            {
-                var categories1 = db.Category.ToList();
-                CategoryComboBox.ItemsSource = categories1;
-                CategoryComboBox.DisplayMemberPath = "Name";
-                CategoryComboBox.SelectedValuePath = "ID";
-            }
-        }
-        private void LoadAdsTypes()
-        {
-            using (var db = new Entities())
-            {
-                var cities = db.AdsType.ToList();
-                AdsTypeComboBox.ItemsSource = cities;
-                AdsTypeComboBox.DisplayMemberPath = "Name";
-                AdsTypeComboBox.SelectedValuePath = "Name";
-            }
-        }
+        
+
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            // Считываем данные из полей
+            string adName = NameTextBox.Text;
+            string adDescription = DescriptionTextBox.Text;
+            string adCostText = CostTextBox.Text;
+            string adPhoto = PhotoTextBox.Text;
+            string adCity = CityComboBox.Text;
+            string adCategory = CategoryComboBox.Text;
+            string adAdsType = AdsTypeComboBox.Text;
+            string adStatus = StatusComboBox.Text?.ToString();
+
             // Проверка на пустые поля
-            if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(DescriptionTextBox.Text) ||
-                string.IsNullOrEmpty(CostTextBox.Text)) // Фото должно быть обязательным полем
+            if (string.IsNullOrEmpty(adName) || string.IsNullOrEmpty(adDescription) || string.IsNullOrEmpty(adCostText))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
                 return;
             }
 
             // Попробуем безопасно преобразовать стоимость
-            decimal cost;
-            if (!decimal.TryParse(CostTextBox.Text, out cost))
+            decimal adCost;
+            if (!decimal.TryParse(adCostText, out adCost))
             {
                 MessageBox.Show("Пожалуйста, введите корректную стоимость.");
                 return;
             }
 
+            // Получаем выбранные значения
+            //var selectedCategory = Entities.GetContext().Category
+            //    .Where(c => c.Name == adCategory)
+            //    .FirstOrDefault();
+
+            //if (selectedCategory == null)
+            //{
+            //    MessageBox.Show("Категория не найдена.");
+            //    return;
+            //}
+
+            var selectedCityID = ReturnCity(adCity);
+            var selectedCategoryID = ReturnCategory(adCategory);
+
+
+            // Проверка на статус
+            bool isOpen = adStatus == "Открыто" ? true : false;
+
             using (var db = new Entities())
             {
-                var selectedCategoryName = (CategoryComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-                var category = db.Category.FirstOrDefault(c => c.Name == selectedCategoryName);
-
-                if (category == null)
+                // Если редактируем существующее объявление
+                if (_adToEdit != null)
                 {
-                    MessageBox.Show("Категория не найдена.");
-                    return;
+                    var currentAd = db.Ads.Where(x => x.ID == _adToEdit.ID).FirstOrDefault();
+                    if (currentAd != null)
+                    {
+                        currentAd.Name = adName;
+                        currentAd.Description = adDescription;
+                        currentAd.Cost = adCost;
+                        currentAd.Photo = adPhoto;
+                        currentAd.CategoryID = selectedCategoryID;
+                        currentAd.AdsType = adAdsType;
+                        currentAd.CityID = selectedCityID;
+                        currentAd.IsOpen = isOpen;
+                        db.SaveChanges();
+                        MessageBox.Show("Объявление обновлено.");
+                        NavigationService?.GoBack();  // Возвращаемся на предыдущую страницу
+                    }
+                    else
+                    {
+                        MessageBox.Show("Объявление не найдено.");
+                    }
                 }
-
-                var selectedCity = CityComboBox.SelectedItem as City;
-                if (selectedCity == null)
+                else  // Если создаем новое объявление
                 {
-                    MessageBox.Show("Город не найден.");
-                    return;
-                }
-
-                var selectedAdsType = (AdsTypeComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-                if (string.IsNullOrEmpty(selectedAdsType))
-                {
-                    MessageBox.Show("Пожалуйста, выберите тип объявления.");
-                    return;
-                }
-
-                if (_adToEdit == null)  // Если редактируем, то обновляем существующее объявление
-                {
-                    // Создаем новое объявление
                     var newAd = new Ads
                     {
-                        Name = NameTextBox.Text,
-                        Description = DescriptionTextBox.Text,
-                        Cost = cost,
-                        Category = category,
-                        Seller = CurrentUser.UserName,
-                        AdsType = selectedAdsType,
-                        City = selectedCity,
-                        CityID = selectedCity.ID,
-                        Photo = PhotoTextBox.Text,
-                        IsOpen = true,
+                        Name = adName,
+                        Description = adDescription,
+                        Cost = adCost,
+                        Photo = adPhoto,
+                        CategoryID = selectedCategoryID,
+                        AdsType = adAdsType,
+                        CityID = selectedCityID,
+                        IsOpen = isOpen,
                         PublicationDate = DateTime.Now
                     };
 
                     db.Ads.Add(newAd);
+                    db.SaveChanges();
+                    MessageBox.Show("Объявление добавлено.");
+                    NavigationService?.GoBack();  // Возвращаемся на предыдущую страницу
                 }
-                else  // Если редактируем существующее, то просто обновляем
-                {
-                    // Обновляем поля существующего объявления
-                    _adToEdit.Name = NameTextBox.Text;
-                    _adToEdit.Description = DescriptionTextBox.Text;
-                    _adToEdit.Cost = cost;
-                    _adToEdit.Category = category;
-                    _adToEdit.City = selectedCity;
-                    _adToEdit.AdsType = selectedAdsType;
-                    _adToEdit.Photo = PhotoTextBox.Text;
-
-                    // Так как объект уже отслеживается, дополнительных изменений состояния делать не нужно
-                }
-
-                db.SaveChanges();  // Сохраняем изменения
-                MessageBox.Show("Объявление сохранено.");
-                NavigationService?.GoBack();  // Возвращаемся на предыдущую страницу
             }
+        }
+    
+
+        private int ReturnCity(string addCity)
+        {
+            return Entities.GetContext().City.Where(x => x.Name == addCity).Select(u => u.ID).FirstOrDefault();
+        }
+        private int ReturnCategory(string addCategory)
+        {
+            return Entities.GetContext().Category.Where(x => x.Name == addCategory).Select(u => u.ID).FirstOrDefault();
         }
     }
 
