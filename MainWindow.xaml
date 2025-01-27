@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mamontov_02"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="815">
+        Title="MainWindow" Height="450" Width="1070" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="51"/>
             <RowDefinition/>
-            <RowDefinition Height="19.04"/>
+            <RowDefinition Height="19"/>
         </Grid.RowDefinitions>
 
         <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/AdsPage.xaml" Navigated="MainFrame_OnNavigated" NavigationUIVisibility="Hidden"/>

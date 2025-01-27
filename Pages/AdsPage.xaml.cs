@@ -11,18 +11,20 @@ namespace Mamontov_02.Pages
         {
             InitializeComponent();
             var cities = Entities.GetContext().City.Select(u => u.Name).ToList();
-           
-
             var categories = Entities.GetContext().Category.Select(u => u.Name).ToList();
             var ads = Entities.GetContext().Ads.ToList();
+            var adsType = Entities.GetContext().AdsType.Select(u => u.Name).ToList();
+            var status = Entities.GetContext().Category.Select(u => u.Name).ToList();
 
             categories.Insert(0, "Все категории");
             cities.Insert(0, "Все города");
-
+            adsType.Insert(0, "Все категории");
             CategoryComboBox.ItemsSource = categories;
             CategoryComboBox.SelectedIndex = 0;
             CityComboBox.ItemsSource = cities;
             CityComboBox.SelectedIndex = 0;
+            AdsTypeComboBox.ItemsSource = adsType;
+            AdsTypeComboBox.SelectedIndex = 0;
         }
 
         private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -33,9 +35,7 @@ namespace Mamontov_02.Pages
                 AdsListView.ItemsSource = ads;
             }
             else
-            {
-               
-
+            {              
                 var ads = Entities.GetContext().Ads.ToList();
                 ads = ads.Where(x => x.CategoryID == CategoryComboBox.SelectedIndex).ToList();
                 AdsListView.ItemsSource = ads;
@@ -53,22 +53,22 @@ namespace Mamontov_02.Pages
 
         }
 
-        private void RefreshButton_Click(object sender, RoutedEventArgs e)
-        {  
-            if (CategoryComboBox.Text != "Все категории")
-            {
-                var ads = Entities.GetContext().Ads.ToList();
-                ads = ads.Where(x => x.CategoryID == CategoryComboBox.SelectedIndex).ToList();
-                AdsListView.ItemsSource = ads;
-            }
-            else
-            {
-                var ads = Entities.GetContext().Ads.ToList();
-                AdsListView.ItemsSource = ads;
-            }
+        //private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        //{  
+        //    if (CategoryComboBox.Text != "Все категории")
+        //    {
+        //        var ads = Entities.GetContext().Ads.ToList();
+        //        ads = ads.Where(x => x.CategoryID == CategoryComboBox.SelectedIndex).ToList();
+        //        AdsListView.ItemsSource = ads;
+        //    }
+        //    else
+        //    {
+        //        var ads = Entities.GetContext().Ads.ToList();
+        //        AdsListView.ItemsSource = ads;
+        //    }
          
 
-        }
+        //}
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
@@ -93,7 +93,10 @@ namespace Mamontov_02.Pages
         }
         private void AddAdButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new AddAdPage(null));
+            if (!IsAuth.isAuth)
+                NavigationService?.Navigate(new AddAdPage(null));
+            else
+                MessageBox.Show("Пожалуйста, авторизуйтесь для данной функции через меню 'Личный кабинет'");
         }
 
         private void ViewCompletedButton_Click(object sender, RoutedEventArgs e)
@@ -159,6 +162,39 @@ namespace Mamontov_02.Pages
                 ads = ads.Where(x => x.CityID == CityComboBox.SelectedIndex).ToList();
                 AdsListView.ItemsSource = ads;
             }
+        }
+
+        private void AdsTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AdsTypeComboBox.SelectedIndex == 0)
+            {
+                var ads = Entities.GetContext().Ads.ToList();
+                AdsListView.ItemsSource = ads;
+            }
+            else
+            {
+                var ads = Entities.GetContext().Ads.ToList();
+                ads = ads.Where(x => x.AdsTypeID == AdsTypeComboBox.SelectedIndex).ToList();
+                AdsListView.ItemsSource = ads;
+            }
+        }
+
+        private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedStatus = (StatusComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            var ads = Entities.GetContext().Ads.ToList();
+
+            if (selectedStatus == "Активно")
+            {
+                ads = ads.Where(x => x.IsOpen).ToList();
+            }
+            else if (selectedStatus == "Завершено")
+            {
+                ads = ads.Where(x => !x.IsOpen).ToList();
+            }
+
+            AdsListView.ItemsSource = ads;
         }
     }
 }

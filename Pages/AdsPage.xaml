@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Mamontov_02.Pages" xmlns:local1="SellerVisibilityConverter"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="815"
+      d:DesignHeight="450" d:DesignWidth="1070"
       Title="AdsPage">
 
     <Grid >
@@ -16,16 +16,22 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="54"/>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="55"/>
         </Grid.RowDefinitions>
 
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="70" Width="800" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="70" Width="1057" Grid.ColumnSpan="2" Margin="5,0,0,0">
             <TextBox x:Name="SearchBox" Width="155" Margin="10" TextChanged="SearchBox_TextChanged" Height="30" FontSize="12"/>
             <ComboBox x:Name="CategoryComboBox"  Width="153" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CategoryComboBox_SelectionChanged" Padding="0"/>
             <ComboBox x:Name="CityComboBox"  Width="148" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CityComboBox_SelectionChanged" Padding="0"/>
-            <Button x:Name="RefreshButton" Content="Обновить" Width="82" Margin="16" Click="RefreshButton_Click" />
-            <Button x:Name="ClearButton" Content="Очистить фильтр" Width="129" Margin="16" Click="ClearButton_Click"/>
+            <ComboBox x:Name="AdsTypeComboBox"  Width="153" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="AdsTypeComboBox_SelectionChanged" Padding="0"/>
+            <ComboBox x:Name="StatusComboBox" Width="128" Margin="16" Height="30" FontSize="12" SelectionChanged="StatusComboBox_SelectionChanged" Padding="0">
+                <ComboBoxItem Name="allItem" Content="Все" />
+                <ComboBoxItem Name="activeItem" Content="Активно" />
+                <ComboBoxItem Name="endedItem" Content="Завершено" />
+            </ComboBox>
+            <!-- <Button x:Name="RefreshButton" Content="Обновить" Width="81" Margin="16" Click="RefreshButton_Click" />-->
+            <Button x:Name="ClearButton" Content="Очистить фильтр" Width="148" Margin="16" Click="ClearButton_Click"/>
 
         </StackPanel>
 
@@ -66,17 +72,16 @@
 
                         <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="4" HorizontalAlignment="Center" FontSize="12" Text="{Binding Seller}" Margin="5"/>
 
-     
+
                         <Button Name="EditAdButton" Content="Редактировать" Width="100" Height="30" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" 
                         Click="EditAdButton_Click" Loaded="EditAdButton_Loaded"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="166" Grid.ColumnSpan="2">
-            <Button x:Name="AddAdButton" Content="Добавить объявление" Width="161"  Click="AddAdButton_Click"/>
 
-        </StackPanel>
+           <Button x:Name="AddAdButton" Content="Добавить объявление" Width="161"  Click="AddAdButton_Click" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
+
+        
     </Grid>
 </Page>

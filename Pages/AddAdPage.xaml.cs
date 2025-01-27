@@ -30,8 +30,8 @@ namespace Mamontov_02.Pages
             {
                 StatusComboBox.Visibility = Visibility.Visible;
                 StatusTextBlock.Visibility = Visibility.Visible;
-                // Устанавливаем текущий статус в ComboBox
-                var selectedStatus = ad.IsOpen ? "Открыто" : "Завершено";
+       
+                var selectedStatus = ad.IsOpen ? "Активно" : "Завершено";
                 foreach (var item in StatusComboBox.Items)
                 {
                     var comboBoxItem = item as ComboBoxItem;
@@ -58,16 +58,16 @@ namespace Mamontov_02.Pages
             string adAdsType = AdsTypeComboBox.Text;
             string adStatus = StatusComboBox.Text?.ToString();
             if(PhotoTextBox.Text == null) { adPhoto = "NULL"; }
-            if (string.IsNullOrEmpty(adName) || string.IsNullOrEmpty(adDescription) || string.IsNullOrEmpty(adCostText))
+            if (string.IsNullOrEmpty(adName) || string.IsNullOrEmpty(adDescription) || string.IsNullOrEmpty(adCostText) || string.IsNullOrEmpty(adCity) || string.IsNullOrEmpty(adCategory) || string.IsNullOrEmpty(adAdsType))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
                 return;
             }
 
-            decimal adCost;
-            if (!decimal.TryParse(adCostText, out adCost))
+            int adCost;
+            if (!int.TryParse(adCostText, out adCost) || adCost < 0)
             {
-                MessageBox.Show("Пожалуйста, введите корректную стоимость.");
+                MessageBox.Show("Пожалуйста, введите корректную неотрицательную целую стоимость.");
                 return;
             }
 
@@ -77,7 +77,7 @@ namespace Mamontov_02.Pages
             var selectedCategoryID = ReturnCategory(adCategory);
             var selectedAdsTypeID = ReturnAdsType(adAdsType);
 
-            bool isOpen = adStatus == "Открыто" ? true : false;
+            bool isOpen = adStatus == "Активно" ? true : false;
 
             using (var db = new Entities())
             {
@@ -140,6 +140,8 @@ namespace Mamontov_02.Pages
         {
             return Entities.GetContext().AdsType.Where(x => x.Name == addAdsType).Select(u => u.ID).FirstOrDefault();
         }
+
+       
     }
 
 }
