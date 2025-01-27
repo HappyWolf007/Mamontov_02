@@ -66,15 +66,14 @@
 
                         <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="4" HorizontalAlignment="Center" FontSize="12" Text="{Binding Seller}" Margin="5"/>
 
-                        <!-- Кнопка редактирования -->
+     
                         <Button Name="EditAdButton" Content="Редактировать" Width="100" Height="30" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" 
                         Click="EditAdButton_Click" Loaded="EditAdButton_Loaded"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <!-- Панель для добавления нового объявления -->
+        
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="166" Grid.ColumnSpan="2">
             <Button x:Name="AddAdButton" Content="Добавить объявление" Width="161"  Click="AddAdButton_Click"/>
 

@@ -16,9 +16,7 @@ using System.Windows.Shapes;
 
 namespace Mamontov_02.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthPage.xaml
-    /// </summary>
+ 
     public partial class AuthPage : Page
     {
         public AuthPage()
@@ -28,19 +26,18 @@ namespace Mamontov_02.Pages
 
         private void ButtonEnter_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка на пустые поля
+
             if (string.IsNullOrEmpty(TextBoxLogin.Text) || string.IsNullOrEmpty(PasswordBox.Password))
             {
                 MessageBox.Show("Введите логин и пароль!");
                 return;
             }
 
-            
-            //string PasswordHash = GetHash(PasswordBox.Password);
 
-            using (var db = new Entities()) // Убедитесь, что это ваш контекст базы данных
+
+            using (var db = new Entities()) 
             {
-                // Поиск пользователя с указанным логином и паролем
+               
                 var user = db.User
                              .FirstOrDefault(u => u.Username == TextBoxLogin.Text && u.Password == PasswordBox.Password);
 
@@ -61,7 +58,6 @@ namespace Mamontov_02.Pages
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
-            // Навигация на страницу регистрации
             NavigationService?.Navigate(new RegPage());
         }
 
@@ -76,13 +72,7 @@ namespace Mamontov_02.Pages
                 txtHintPassword.Visibility = Visibility.Hidden;
         }
 
-        //public static string GetHash(string password)
-        //{
-        //    using (var hash = SHA1.Create())
-        //    {
-        //        return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
-        //    }
-        //}
+    
     }
 }
 

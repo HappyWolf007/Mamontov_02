@@ -18,9 +18,7 @@ using Mamontov_02.Pages;
 
 namespace Mamontov_02
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
 
@@ -31,11 +29,10 @@ namespace Mamontov_02
             
         }
 
-       
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            // Закрытие окна
+
             if (MainFrame.CanGoBack) MainFrame.GoBack();
         }
 

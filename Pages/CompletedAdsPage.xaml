@@ -9,14 +9,13 @@
       Title="CompletedAdsPage"  Loaded="Page_Loaded">
 
     <Grid>
-   
+
         <Grid.RowDefinitions>
             <RowDefinition Height="41"/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-
-        <!-- CheckBox для фильтра завершённых объявлений -->
+        
         <CheckBox Name="ShowCompletedAdsCheckBox" Content="Отображать только завершённые объявления" 
                   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalContentAlignment="Center"
                   Checked="ShowCompletedAdsCheckBox_Checked" Unchecked="ShowCompletedAdsCheckBox_Unchecked" Height="30" Width="359" />

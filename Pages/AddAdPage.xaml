@@ -25,53 +25,39 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
-                <!-- Ширина для меток -->
                 <ColumnDefinition Width="*"/>
-                <!-- Ширина для полей ввода -->
             </Grid.ColumnDefinitions>
 
-            <!-- Название -->
             <TextBlock Text="Название" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" Margin="10"/>
             <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Width="300" Height="30" Margin="10,11,240,9" Padding="0"/>
 
-            <!-- Описание -->
             <TextBlock Text="Описание" VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Right" Height="30" Margin="10"/>
             <TextBox x:Name="DescriptionTextBox" Grid.Row="1" Grid.Column="1" Width="300" Height="30" Margin="10,11,240,9" Padding="0"/>
 
-            <!-- Стоимость -->
             <TextBlock Text="Стоимость" VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Right" Height="30" Margin="10"/>
             <TextBox x:Name="CostTextBox" Grid.Row="2" Grid.Column="1" Width="300" Height="30" Margin="10,11,240,9" Padding="0"/>
 
-            <!-- Город -->
             <TextBlock Text="Город" VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Right" Height="30" Margin="10"/>
-            <ComboBox x:Name="CityComboBox" Text="{Binding City.Name}" Grid.Row="3" Grid.Column="1" Width="300" Margin="10,11,240,9" Height="30" Padding="0">
-                <!-- Сюда будут добавляться города из базы данных -->
-            </ComboBox>
+            <ComboBox x:Name="CityComboBox" Text="{Binding City.Name}" Grid.Row="3" Grid.Column="1" Width="300" Margin="10,11,240,9" Height="30" Padding="0"/>
+           
 
-            <!-- Категория -->
             <TextBlock Text="Категория" VerticalAlignment="Center" Grid.Row="4" HorizontalAlignment="Right" Height="30" Margin="10"/>
-            <ComboBox x:Name="CategoryComboBox" Text="{Binding Category.Name}" Grid.Row="4" Grid.Column="1" Width="300" Margin="10,11,240,9" Height="30" Padding="0">
-                <!-- Сюда будут добавляться категории -->
-            </ComboBox>
+            <ComboBox x:Name="CategoryComboBox" Text="{Binding Category.Name}" Grid.Row="4" Grid.Column="1" Width="300" Margin="10,11,240,9" Height="30" Padding="0"/>
+      
 
-            <!-- Тип объявления -->
             <TextBlock Text="Тип объявления" VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Right" Height="30" Margin="10"/>
-            <ComboBox x:Name="AdsTypeComboBox" Text="{Binding AdsType.Name}" Grid.Row="5" Grid.Column="1" Width="300" Margin="10,11,240,9" Height="30" Padding="0">
-                <!-- Сюда будут добавляться типы объявлений -->
-            </ComboBox>
+            <ComboBox x:Name="AdsTypeComboBox" Text="{Binding AdsType.Name}" Grid.Row="5" Grid.Column="1" Width="300" Margin="10,11,240,9" Height="30" Padding="0"/>
+           
 
-            <!-- Фото -->
             <TextBlock Text="Фото" VerticalAlignment="Center" Grid.Row="6" HorizontalAlignment="Right" Margin="10" Height="30"/>
             <TextBox x:Name="PhotoTextBox" Grid.Row="6" Grid.Column="1" Width="300" Margin="10,11,240,9" Height="30" Padding="0"/>
 
-            <!-- Статус (только при редактировании) -->
             <TextBlock Name="StatusTextBlock" Text="Статус" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" Margin="10" Grid.Row="7" Visibility="Collapsed"/>
             <ComboBox x:Name="StatusComboBox" Grid.Row="7" Grid.Column="1" Width="300" Margin="10,13,240,7" Visibility="Collapsed" Height="30" Padding="0">
                 <ComboBoxItem Content="Открыто"/>
                 <ComboBoxItem Content="Завершено"/>
             </ComboBox>
 
-            <!-- Кнопка сохранения -->
             <Button x:Name="SaveButton" Content="Сохранить" Width="150" Grid.Row="8" Grid.Column="1" Margin="63,10,337,10" Click="SaveButton_Click"/>
         </Grid>
     </Grid>

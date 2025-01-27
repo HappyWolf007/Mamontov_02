@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace Mamontov_02.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для CompletedAdsPage.xaml
-    /// </summary>
+
     public partial class CompletedAdsPage : Page
     {
         public CompletedAdsPage()
@@ -42,7 +40,7 @@ namespace Mamontov_02.Pages
             if (CurrentUser.UserName != null)
                 ads = ads.Where(x => x.Seller == CurrentUser.UserName).ToList();
 
-            // Фильтрация по завершённым объявлениям
+           
             if (ShowCompletedAdsCheckBox.IsChecked == true)
             {
                 ads = ads.Where(x => !x.IsOpen).ToList();
@@ -50,7 +48,6 @@ namespace Mamontov_02.Pages
 
             AdsListView.ItemsSource = ads;
 
-            // Подсчёт общей выручки за завершённые объявления
             decimal totalProfit = ads.Where(x => !x.IsOpen).Sum(x => x.Cost);
             TotalProfit.Text = $"Общая прибыль: {totalProfit:C}";
         }

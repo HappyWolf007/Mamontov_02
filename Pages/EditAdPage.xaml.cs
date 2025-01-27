@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace Mamontov_02.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для EditAdPage.xaml
-    /// </summary>
+
     public partial class EditAdPage : Page
     {
         private int _adId;
@@ -26,12 +24,12 @@ namespace Mamontov_02.Pages
         {
             InitializeComponent();
             _adId = adId;
-            LoadAdData();  // Загружаем данные объявления
+            LoadAdData();  
         }
 
         private void LoadAdData()
         {
-            using (var db = new Entities())  // Используем контекст данных
+            using (var db = new Entities())  
             {
                 var ad = db.Ads.FirstOrDefault(a => a.ID == _adId);
                 if (ad != null)
@@ -40,10 +38,9 @@ namespace Mamontov_02.Pages
                     DescriptionTextBox.Text = ad.Description;
                     CostTextBox.Text = ad.Cost.ToString();
 
-                    // Исправленный код для выбора категории из ComboBox
                     var categoryItem = CategoryComboBox.Items
                         .Cast<ComboBoxItem>()
-                        .FirstOrDefault(c => c.Content.ToString() == ad.Category.Name); // Сравниваем с именем категории
+                        .FirstOrDefault(c => c.Content.ToString() == ad.Category.Name); 
 
                     if (categoryItem != null)
                     {
@@ -55,14 +52,14 @@ namespace Mamontov_02.Pages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка на пустые поля
+
             if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(DescriptionTextBox.Text) || string.IsNullOrEmpty(CostTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
                 return;
             }
 
-            using (var db = new Entities())  // Используем контекст данных
+            using (var db = new Entities())  
             {
                 var ad = db.Ads.FirstOrDefault(a => a.ID == _adId);
                 if (ad != null)
@@ -71,13 +68,10 @@ namespace Mamontov_02.Pages
                     ad.Description = DescriptionTextBox.Text;
                     ad.Cost = decimal.Parse(CostTextBox.Text);
 
-                    // Получаем имя выбранной категории из ComboBox
                     var selectedCategoryName = (CategoryComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
 
-                    // Находим объект категории по имени
                     var category = db.Category.FirstOrDefault(c => c.Name == selectedCategoryName);
 
-                    // Если категория найдена, присваиваем её
                     if (category != null)
                     {
                         ad.Category = category;
@@ -91,7 +85,7 @@ namespace Mamontov_02.Pages
                     db.SaveChanges();
 
                     MessageBox.Show("Объявление обновлено.");
-                    NavigationService?.GoBack();  // Возвращаемся на предыдущую страницу
+                    NavigationService?.GoBack(); 
                 }
                 else
                 {

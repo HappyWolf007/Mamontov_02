@@ -49,7 +49,6 @@ namespace Mamontov_02.Pages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Считываем данные из полей
             string adName = NameTextBox.Text;
             string adDescription = DescriptionTextBox.Text;
             string adCostText = CostTextBox.Text;
@@ -59,7 +58,6 @@ namespace Mamontov_02.Pages
             string adAdsType = AdsTypeComboBox.Text;
             string adStatus = StatusComboBox.Text?.ToString();
             if(PhotoTextBox.Text == null) { adPhoto = "NULL"; }
-            // Проверка на пустые поля
             if (string.IsNullOrEmpty(adName) || string.IsNullOrEmpty(adDescription) || string.IsNullOrEmpty(adCostText))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
@@ -79,13 +77,10 @@ namespace Mamontov_02.Pages
             var selectedCategoryID = ReturnCategory(adCategory);
             var selectedAdsTypeID = ReturnAdsType(adAdsType);
 
-
-            // Проверка на статус
             bool isOpen = adStatus == "Открыто" ? true : false;
 
             using (var db = new Entities())
             {
-                // Если редактируем существующее объявление
                 if (_adToEdit != null)
                 {
                     var currentAd = db.Ads.Where(x => x.ID == _adToEdit.ID).FirstOrDefault();
@@ -101,14 +96,14 @@ namespace Mamontov_02.Pages
                         currentAd.IsOpen = isOpen;
                         db.SaveChanges();
                         MessageBox.Show("Объявление обновлено.");
-                        NavigationService?.GoBack();  // Возвращаемся на предыдущую страницу
+                        NavigationService?.GoBack(); 
                     }
                     else
                     {
                         MessageBox.Show("Объявление не найдено.");
                     }
                 }
-                else  // Если создаем новое объявление
+                else 
                 {
                     var newAd = new Ads
                     {
@@ -126,7 +121,7 @@ namespace Mamontov_02.Pages
                     db.Ads.Add(newAd);
                     db.SaveChanges();
                     MessageBox.Show("Объявление добавлено.");
-                    NavigationService?.GoBack();  // Возвращаемся на предыдущую страницу
+                    NavigationService?.GoBack();  
                 }
             }
         }
