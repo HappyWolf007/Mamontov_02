@@ -23,6 +23,52 @@ namespace Mamontov_02.Pages
         public CompletedAdsPage()
         {
             InitializeComponent();
+            UpdateAds();
+        }
+
+        private void EditAdButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedAd = (sender as Button)?.DataContext as Ads;
+            if (selectedAd != null)
+            {
+                NavigationService?.Navigate(new AddAdPage(selectedAd));
+            }
+        }
+
+        private void UpdateAds()
+        {
+            var ads = Entities.GetContext().Ads.ToList();
+
+            if (CurrentUser.UserName != null)
+                ads = ads.Where(x => x.Seller == CurrentUser.UserName).ToList();
+
+            // Фильтрация по завершённым объявлениям
+            if (ShowCompletedAdsCheckBox.IsChecked == true)
+            {
+                ads = ads.Where(x => !x.IsOpen).ToList();
+            }
+
+            AdsListView.ItemsSource = ads;
+
+            // Подсчёт общей выручки за завершённые объявления
+            decimal totalProfit = ads.Where(x => !x.IsOpen).Sum(x => x.Cost);
+            TotalProfit.Text = $"Общая прибыль: {totalProfit:C}";
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateAds();
+        }
+
+        private void ShowCompletedAdsCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateAds();
+        }
+
+        private void ShowCompletedAdsCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateAds();
         }
     }
+
 }

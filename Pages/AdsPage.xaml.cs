@@ -12,8 +12,6 @@ namespace Mamontov_02.Pages
             InitializeComponent();
             var cities = Entities.GetContext().City.Select(u => u.Name).ToList();
            
-            //CityComboBox.DisplayMemberPath = "Name";
-            //CityComboBox.SelectedValuePath = "ID";
 
             var categories = Entities.GetContext().Category.Select(u => u.Name).ToList();
             var ads = Entities.GetContext().Ads.ToList();
@@ -117,7 +115,7 @@ namespace Mamontov_02.Pages
             var selectedAd = (sender as Button)?.DataContext as Ads;
             if (selectedAd != null)
             {
-                NavigationService?.Navigate(new AddAdPage(selectedAd));  // Передаем объявление в AddAdPage для редактирования
+                NavigationService?.Navigate(new AddAdPage(selectedAd));  
             }
         }
 
@@ -146,12 +144,7 @@ namespace Mamontov_02.Pages
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            //Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-            //AdsListView.ItemsSource = Entities.GetContext().Ads.ToList();
-        }
+     
 
         private void CityComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

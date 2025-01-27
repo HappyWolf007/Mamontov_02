@@ -76,6 +76,21 @@ namespace Mamontov_02.Pages
             NavigationService?.Navigate(new AuthPage());
         }
 
+        private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtHintPassword.Visibility = Visibility.Hidden;
+        }
+
+        private void ConfirmPasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtHintConfirmPassword.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtHintLogin.Visibility = Visibility.Hidden;
+        }
+
         //public static string GetHash(string password)
         //{
         //    using (var hash = SHA1.Create())

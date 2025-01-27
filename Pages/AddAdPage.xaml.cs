@@ -7,9 +7,8 @@ namespace Mamontov_02.Pages
 {
     public partial class AddAdPage : Page
     {
-        private Ads _adToEdit = new Ads();  // Объявление для редактирования
+        private Ads _adToEdit = new Ads();  
 
-        // Конструктор для редактирования существующего объявления
         public AddAdPage(Ads ad)
         {
             InitializeComponent();
@@ -17,25 +16,16 @@ namespace Mamontov_02.Pages
                 _adToEdit = ad;
             DataContext = ad;
 
-            // LoadCities();
             CityComboBox.ItemsSource = Entities.GetContext().City.Select(u => u.Name).ToList();
             CategoryComboBox.ItemsSource = Entities.GetContext().Category.Select(u => u.Name).ToList();
             AdsTypeComboBox.ItemsSource = Entities.GetContext().AdsType.Select(u => u.Name).ToList();
-            //LoadCategory();
-            //LoadAdsTypes();
 
-            // Заполняем поля на основе данных объявления
             NameTextBox.Text = ad.Name;
             DescriptionTextBox.Text = ad.Description;
             CostTextBox.Text = ad.Cost.ToString();
             PhotoTextBox.Text = ad.Photo;
 
-            // Устанавливаем выбранные значения в ComboBox
-            // CityComboBox.SelectedValue = ad.CityID;
-            //CategoryComboBox.SelectedValue = ad.CategoryID;
-            //AdsTypeComboBox.SelectedValue = ad.AdsType;
 
-            // Если редактируем существующее объявление, показываем ComboBox для статуса
             if (_adToEdit != null)
             {
                 StatusComboBox.Visibility = Visibility.Visible;
@@ -76,7 +66,6 @@ namespace Mamontov_02.Pages
                 return;
             }
 
-            // Попробуем безопасно преобразовать стоимость
             decimal adCost;
             if (!decimal.TryParse(adCostText, out adCost))
             {
@@ -84,16 +73,7 @@ namespace Mamontov_02.Pages
                 return;
             }
 
-            // Получаем выбранные значения
-            //var selectedCategory = Entities.GetContext().Category
-            //    .Where(c => c.Name == adCategory)
-            //    .FirstOrDefault();
 
-            //if (selectedCategory == null)
-            //{
-            //    MessageBox.Show("Категория не найдена.");
-            //    return;
-            //}
 
             var selectedCityID = ReturnCity(adCity);
             var selectedCategoryID = ReturnCategory(adCategory);

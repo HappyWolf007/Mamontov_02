@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditAdPage">
 
-    <Grid Background="#FFB5D5CA">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
             <RowDefinition/>

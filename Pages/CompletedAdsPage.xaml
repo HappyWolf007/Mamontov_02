@@ -6,27 +6,66 @@
       xmlns:local="clr-namespace:Mamontov_02.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CompletedAdsPage">
+      Title="CompletedAdsPage"  Loaded="Page_Loaded">
 
-    <Grid >
+    <Grid>
+   
         <Grid.RowDefinitions>
-            <RowDefinition Height="62"/>
+            <RowDefinition Height="41"/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <!-- Список завершенных объявлений -->
-        <ListView x:Name="CompletedAdsListView" Grid.Row="1" Margin="10,10,10,10">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="200"/>
-                    <GridViewColumn Header="Город" DisplayMemberBinding="{Binding City}" Width="100"/>
-                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category.Name}" Width="150"/>
-                    <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Cost}" Width="100"/>
-                    <GridViewColumn Header="Дата завершения" DisplayMemberBinding="{Binding Status}" Width="150"/>
-                </GridView>
-            </ListView.View>
+        <!-- CheckBox для фильтра завершённых объявлений -->
+        <CheckBox Name="ShowCompletedAdsCheckBox" Content="Отображать только завершённые объявления" 
+                  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalContentAlignment="Center"
+                  Checked="ShowCompletedAdsCheckBox_Checked" Unchecked="ShowCompletedAdsCheckBox_Unchecked" Height="30" Width="359" />
+
+        <ListView Name="AdsListView" Grid.Row="1" Margin="16,8,16,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Grid.ColumnSpan="2">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="260" Height="400" Margin="5" Background="White">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="0" TextWrapping="Wrap" Text="{Binding Name}" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+
+                        <Image Width="250" Height="200" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center">
+                            <Image.Source>
+                                <Binding Path="Photo">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>/Resources/DefaultPhoto.png</ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="2" HorizontalAlignment="Center" FontSize="14" Text="{Binding Category.Name}"/>
+
+                        <TextBlock VerticalAlignment="Top" TextWrapping="Wrap" Width="250" Grid.Row="3" HorizontalAlignment="Center" FontSize="12" Text="{Binding Description}" Margin="5"/>
+
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="4" HorizontalAlignment="Center" FontSize="12" Text="{Binding Seller}" Margin="5"/>
+
+                        <Button Name="EditAdButton" Content="Редактировать" Width="140" Height="30" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" 
+                     Click="EditAdButton_Click"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock x:Name="TotalProfit" Text="Общая прибыль: 0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Height="16" Width="102"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="30" Width="768" Grid.ColumnSpan="2" Margin="16,0,0,0">
+            <TextBlock x:Name="TotalProfit" Text="Общая прибыль: 0" Grid.Row="1" VerticalAlignment="Center" Height="30" TextAlignment="Center" Width="768" Grid.RowSpan="2"/>
+        </StackPanel>
     </Grid>
 </Page>

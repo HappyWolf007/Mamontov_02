@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Mamontov_02.Pages" xmlns:local1="SellerVisibilityConverter"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="815"
-      Title="AdsPage" Loaded="Page_Loaded">
+      Title="AdsPage">
 
     <Grid >
         <Grid.ColumnDefinitions>
@@ -75,9 +75,9 @@
         </ListView>
 
         <!-- Панель для добавления нового объявления -->
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="60" Width="384" Grid.ColumnSpan="2" Margin="208,0,0,0">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="166" Grid.ColumnSpan="2">
             <Button x:Name="AddAdButton" Content="Добавить объявление" Width="161"  Click="AddAdButton_Click"/>
-            <Button x:Name="ViewCompletedButton" Content="Завершенные объявления" Width="191" Margin="16,0" Click="ViewCompletedButton_Click"/>
+
         </StackPanel>
     </Grid>
 </Page>

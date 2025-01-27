@@ -46,14 +46,21 @@ namespace Mamontov_02
             if (!(e.Content is Page page)) return;
             this.Title = $"{username} - {page.Title}";
             if (page is AdsPage)
-                BackButton.Visibility = Visibility.Hidden;
+            {
+                BackButton.Visibility = Visibility.Collapsed;
+                MainPageButton.Visibility = Visibility.Collapsed;
+            }
             else
                 BackButton.Visibility = Visibility.Visible;
+            
         }
       
         private void PersonalAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new AuthPage());
+            if (!IsAuth.isAuth)
+                MainFrame.NavigationService.Navigate(new AuthPage());
+            else
+                MainFrame.NavigationService.Navigate(new CompletedAdsPage());
         }
 
         private void MainPageButton_Click(object sender, RoutedEventArgs e)

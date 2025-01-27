@@ -15,8 +15,8 @@
 
         <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/AdsPage.xaml" Navigated="MainFrame_OnNavigated" NavigationUIVisibility="Hidden"/>
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="BackButton" Content="Назад" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="80" Click="BackButton_Click" Foreground="#FF37474F" Background="#FFFF9C1A"/>
-            <Button x:Name="MainPageButton" Content="Главная" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0" Width="80" Click="MainPageButton_Click"/>
+            <Button x:Name="BackButton" Content="Назад" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="80" Click="BackButton_Click" Foreground="#FF37474F" Background="#FFFF9C1A" />
+            <Button x:Name="MainPageButton" Content="Главная" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0" Width="80" Click="MainPageButton_Click" />
             <Button x:Name="PersonalAccountButton" Content="Личный кабинет" VerticalAlignment="Center" Margin="16,0,0,0" Width="132" Click="PersonalAccountButton_Click"/>
            
         </StackPanel>
