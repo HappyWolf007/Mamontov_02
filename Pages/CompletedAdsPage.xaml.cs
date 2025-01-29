@@ -35,31 +35,33 @@ namespace Mamontov_02.Pages
 
         private void UpdateAds()
         {
-            var ads = Entities.GetContext().Ads.ToList();
+            var adsMain = Entities.GetContext().Ads.Where(x => x.Seller == CurrentUser.UserName).ToList();
+            var ads = Entities.GetContext().Ads.Where(x => x.Seller == CurrentUser.UserName).ToList();
 
-            if (CurrentUser.UserName != null)
-                ads = ads.Where(x => x.Seller == CurrentUser.UserName).ToList();
 
-           
             if (ShowCompletedAdsCheckBox.IsChecked == true)
             {
                 ads = ads.Where(x => !x.IsOpen).ToList();
             }
+            else if (ShowCompletedAdsCheckBox.IsChecked == false)
+            {
+                ads = ads.Where(x => x.IsOpen).ToList();
+            }
 
             AdsListView.ItemsSource = ads;
 
-            decimal totalProfit = ads.Where(x => !x.IsOpen).Sum(x => x.Cost);
+            int totalProfit = adsMain.Where(x => !x.IsOpen).Sum(x => x.Cost);
             TotalProfit.Text = $"Общая прибыль: {totalProfit:C}";
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-          
+           
 
             Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-            AdsListView.ItemsSource = Entities.GetContext().Ads.ToList();
+            AdsListView.ItemsSource = Entities.GetContext().Ads.Where(x => x.Seller == CurrentUser.UserName).ToList();
 
-            
+
         }
 
         private void ShowCompletedAdsCheckBox_Checked(object sender, RoutedEventArgs e)
