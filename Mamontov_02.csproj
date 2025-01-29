@@ -107,9 +107,6 @@
     <Compile Include="Pages\CompletedAdsPage.xaml.cs">
       <DependentUpon>CompletedAdsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\EditAdPage.xaml.cs">
-      <DependentUpon>EditAdPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\RegPage.xaml.cs">
       <DependentUpon>RegPage.xaml</DependentUpon>
     </Compile>
@@ -148,10 +145,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CompletedAdsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\EditAdPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

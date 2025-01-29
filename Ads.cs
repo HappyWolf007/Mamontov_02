@@ -24,7 +24,7 @@ namespace Mamontov_02
         public string Name { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
-        public decimal Cost { get; set; }
+        public int Cost { get; set; }
     
         public virtual AdsType AdsType { get; set; }
         public virtual Category Category { get; set; }

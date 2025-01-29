@@ -12,21 +12,22 @@ namespace Mamontov_02.Pages
         public AddAdPage(Ads ad)
         {
             InitializeComponent();
-            if (ad != null)
+            if (ad != null) 
                 _adToEdit = ad;
             DataContext = ad;
 
             CityComboBox.ItemsSource = Entities.GetContext().City.Select(u => u.Name).ToList();
             CategoryComboBox.ItemsSource = Entities.GetContext().Category.Select(u => u.Name).ToList();
             AdsTypeComboBox.ItemsSource = Entities.GetContext().AdsType.Select(u => u.Name).ToList();
+            if (ad != null)
+            {
+                NameTextBox.Text = ad.Name;
+                DescriptionTextBox.Text = ad.Description;
+                CostTextBox.Text = ad.Cost.ToString();
+                PhotoTextBox.Text = ad.Photo;
+            }
 
-            NameTextBox.Text = ad.Name;
-            DescriptionTextBox.Text = ad.Description;
-            CostTextBox.Text = ad.Cost.ToString();
-            PhotoTextBox.Text = ad.Photo;
-
-
-            if (_adToEdit != null)
+            if (ad != null)
             {
                 StatusComboBox.Visibility = Visibility.Visible;
                 StatusTextBlock.Visibility = Visibility.Visible;
@@ -95,6 +96,7 @@ namespace Mamontov_02.Pages
                         currentAd.CityID = selectedCityID;
                         currentAd.IsOpen = isOpen;
                         db.SaveChanges();
+                        
                         MessageBox.Show("Объявление обновлено.");
                         NavigationService?.GoBack(); 
                     }

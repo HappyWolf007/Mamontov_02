@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Mamontov_02.Pages" xmlns:local1="SellerVisibilityConverter"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1070"
-      Title="AdsPage">
+      Title="AdsPage" Loaded="Page_Loaded">
 
     <Grid >
         <Grid.ColumnDefinitions>
@@ -21,21 +21,21 @@
 
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="70" Width="1057" Grid.ColumnSpan="2" Margin="5,0,0,0">
-            <TextBox x:Name="SearchBox" Width="155" Margin="10" TextChanged="SearchBox_TextChanged" Height="30" FontSize="12"/>
+            <TextBox x:Name="SearchBox" Width="155" Margin="10" TextChanged="SearchBox_TextChanged" Height="30" FontSize="12" Padding="0"/>
             <ComboBox x:Name="CategoryComboBox"  Width="153" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CategoryComboBox_SelectionChanged" Padding="0"/>
-            <ComboBox x:Name="CityComboBox"  Width="148" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CityComboBox_SelectionChanged" Padding="0"/>
+            <ComboBox x:Name="CityComboBox"  Width="152" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="CityComboBox_SelectionChanged" Padding="0"/>
             <ComboBox x:Name="AdsTypeComboBox"  Width="153" Margin="16" IsEnabled="True" Height="30" FontSize="12" SelectionChanged="AdsTypeComboBox_SelectionChanged" Padding="0"/>
             <ComboBox x:Name="StatusComboBox" Width="128" Margin="16" Height="30" FontSize="12" SelectionChanged="StatusComboBox_SelectionChanged" Padding="0">
                 <ComboBoxItem Name="allItem" Content="Все" />
                 <ComboBoxItem Name="activeItem" Content="Активно" />
                 <ComboBoxItem Name="endedItem" Content="Завершено" />
             </ComboBox>
-            <!-- <Button x:Name="RefreshButton" Content="Обновить" Width="81" Margin="16" Click="RefreshButton_Click" />-->
+ 
             <Button x:Name="ClearButton" Content="Очистить фильтр" Width="148" Margin="16" Click="ClearButton_Click"/>
 
         </StackPanel>
 
-        <ListView Name="AdsListView" Grid.Row="1" Margin="16,8,16,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Grid.ColumnSpan="2">
+        <ListView Name="AdsListView" Grid.Row="1" Margin="16,8,16,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"  IsEnabled="True" MouseDoubleClick="AdsListView_MouseDoubleClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -44,16 +44,18 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="260" Height="400" Margin="5" Background="White">
+                    <Grid Width="280" Height="440" Margin="5" Background="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="200"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="0" TextWrapping="Wrap" Text="{Binding Name}" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="0" TextWrapping="Wrap" Text="{Binding Name}" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
 
 
                         <Image Width="250" Height="200" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center">
@@ -65,15 +67,16 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="2" HorizontalAlignment="Center" FontSize="14" Text="{Binding Cost}" FontFamily="Tw Cen MT"/>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="3" HorizontalAlignment="Center" FontSize="14" Text="{Binding Category.Name}" FontFamily="Tw Cen MT"/>
 
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="2" HorizontalAlignment="Center" FontSize="14" Text="{Binding Category.Name}"/>
+                        <TextBlock VerticalAlignment="Top" TextWrapping="Wrap" Width="250" Grid.Row="4" HorizontalAlignment="Center" FontSize="12" Text="{Binding Description}" FontFamily="Tw Cen MT"/>
 
-                        <TextBlock VerticalAlignment="Top" TextWrapping="Wrap" Width="250" Grid.Row="3" HorizontalAlignment="Center" FontSize="12" Text="{Binding Description}" Margin="5"/>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="5" HorizontalAlignment="Center" FontSize="12" Text="{Binding City.Name}" FontFamily="Tw Cen MT"/>
 
-                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="4" HorizontalAlignment="Center" FontSize="12" Text="{Binding Seller}" Margin="5"/>
-
-
-                        <Button Name="EditAdButton" Content="Редактировать" Width="100" Height="30" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5" 
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="6" HorizontalAlignment="Center" FontSize="12" Text="{Binding Seller}" FontFamily="Tw Cen MT"/>
+                       
+                        <Button Name="EditAdButton" Content="Удалить" Width="130" Height="30" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                         Click="EditAdButton_Click" Loaded="EditAdButton_Loaded"/>
                     </Grid>
                 </DataTemplate>

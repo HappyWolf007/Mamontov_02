@@ -54,7 +54,12 @@ namespace Mamontov_02.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            UpdateAds();
+          
+
+            Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+            AdsListView.ItemsSource = Entities.GetContext().Ads.ToList();
+
+            
         }
 
         private void ShowCompletedAdsCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -65,6 +70,19 @@ namespace Mamontov_02.Pages
         private void ShowCompletedAdsCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             UpdateAds();
+        }
+
+        
+
+        private void AdsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+          
+                var selectedAd = AdsListView.SelectedItem as Ads;
+                if (selectedAd != null)
+                {
+                    NavigationService?.Navigate(new AddAdPage(selectedAd));
+                }
+            
         }
     }
 

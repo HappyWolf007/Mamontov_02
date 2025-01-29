@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mamontov_02"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1070" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="650" Width="1070" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="51"/>
@@ -14,11 +14,13 @@
         </Grid.RowDefinitions>
 
         <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/AdsPage.xaml" Navigated="MainFrame_OnNavigated" NavigationUIVisibility="Hidden"/>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="0,0,709,0">
             <Button x:Name="BackButton" Content="Назад" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="80" Click="BackButton_Click" Foreground="#FF37474F" Background="#FFFF9C1A" />
             <Button x:Name="MainPageButton" Content="Главная" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0" Width="80" Click="MainPageButton_Click" />
             <Button x:Name="PersonalAccountButton" Content="Личный кабинет" VerticalAlignment="Center" Margin="16,0,0,0" Width="132" Click="PersonalAccountButton_Click"/>
-           
+
         </StackPanel>
+        <Image  Grid.Row="0" Margin="0,6,21,6" Source="/Resources/logo_icon.ico" RenderTransformOrigin="0.812,0.462" HorizontalAlignment="Right" Width="48"/>
+
     </Grid>
 </Window>

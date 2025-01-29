@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Mamontov_02.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1070"
       Title="AuthPage">
 
     <Grid>
@@ -14,18 +14,18 @@
             <RowDefinition Height="347*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="216*"/>
-            <ColumnDefinition Width="99*"/>
-            <ColumnDefinition Width="281*"/>
-            <ColumnDefinition Width="204*"/>
+            <ColumnDefinition Width="266*"/>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="333*"/>
+            <ColumnDefinition Width="336*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock  Text="Пароль" Grid.Column="2"  x:Name="txtHintPassword" HorizontalAlignment="Center" Margin="0,67,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="246"/>
-        <TextBlock  Text="Логин или почта" Grid.Column="2"  x:Name="txtHintLogin" HorizontalAlignment="Center" Margin="0,16,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="246"/>
+        <TextBlock  Text="Пароль" Grid.Column="2"  x:Name="txtHintPassword" HorizontalAlignment="Left" Margin="17,67,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="246"/>
+        <TextBlock  Text="Логин или почта" Grid.Column="2"  x:Name="txtHintLogin" HorizontalAlignment="Left" Margin="17,16,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="194"/>
         <Label  Grid.Column="1" Content="Логин" Grid.Row="1" Height="54" VerticalAlignment="Top" Margin="0,4,0,0"/>
-        <TextBox Background="Transparent" ToolTip="Введите логин или почту" x:Name="TextBoxLogin" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Width="246"  VerticalAlignment="Top" Margin="0,13,0,0" TextChanged="TextBoxLogin_TextChanged"/>
+        <TextBox Background="Transparent" ToolTip="Введите логин или почту" x:Name="TextBoxLogin" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Width="246"  VerticalAlignment="Top" Margin="17,13,0,0" TextChanged="TextBoxLogin_TextChanged" Height="38"/>
         <Label  Content="Пароль" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0,58,0,0" Height="45"/>
-        <PasswordBox Background="Transparent" VerticalContentAlignment="Center" FontSize="14" ToolTip="Введите пароль (кликните два раза, чтобы очистить поле)" x:Name="PasswordBox" Grid.Row="1" HorizontalAlignment="Center" Width="246" Grid.Column="2" Height="38" VerticalAlignment="Top" Margin="0,65,0,0" KeyDown="PasswordBox_KeyDown"/>
-        <Button x:Name="ButtonEnter" ToolTip="Кнопка для входа в учётную запись" Grid.Column="2" Content="Вход" HorizontalAlignment="Left" Margin="17,123,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136"  Click="ButtonEnter_Click"/>
-        <Button x:Name="ButtonRegister" ToolTip="Кнопка для регистрации нового пользователя" Grid.Column="2" Content="Регистрация" HorizontalAlignment="Left" Margin="17,173,0,0" Grid.Row="1" Width="136"  VerticalAlignment="Top" Click="ButtonRegister_Click"/>
+        <PasswordBox Background="Transparent" VerticalContentAlignment="Center" FontSize="14" ToolTip="Введите пароль (кликните два раза, чтобы очистить поле)" x:Name="PasswordBox" Grid.Row="1" HorizontalAlignment="Left" Width="246" Grid.Column="2" Height="38" VerticalAlignment="Top" Margin="17,65,0,0" KeyDown="PasswordBox_KeyDown"/>
+        <Button x:Name="ButtonEnter" ToolTip="Кнопка для входа в учётную запись" Grid.Column="2" Content="Вход" HorizontalAlignment="Left" Margin="17,123,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136"  Click="ButtonEnter_Click" Height="38"/>
+        <Button x:Name="ButtonRegister" ToolTip="Кнопка для регистрации нового пользователя" Grid.Column="2" Content="Регистрация" HorizontalAlignment="Left" Margin="17,173,0,0" Grid.Row="1" Width="136"  VerticalAlignment="Top" Click="ButtonRegister_Click" Height="38"/>
     </Grid>
 </Page>

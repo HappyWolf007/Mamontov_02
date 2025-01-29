@@ -36,7 +36,7 @@ namespace Mamontov_02
             if (MainFrame.CanGoBack) MainFrame.GoBack();
         }
 
-        private void MainFrame_OnNavigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)
         {
             string username = CurrentUser.UserName;
             if (username == null) username = "Пользователь";
@@ -74,8 +74,11 @@ namespace Mamontov_02
             {
                 e.Cancel = true;
             }
-            CurrentUser.UserName = null;
-            IsAuth.isAuth = false;
+            else if (result == MessageBoxResult.Yes) 
+            {
+                CurrentUser.UserName = null;
+                IsAuth.isAuth = false;
+            }
         }
     }
 }
