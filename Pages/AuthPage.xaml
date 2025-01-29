@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Mamontov_02.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1070"
-      Title="AuthPage">
+      Title="Странива авторизации">
 
     <Grid>
         <Grid.RowDefinitions>

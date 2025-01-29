@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Mamontov_02.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CompletedAdsPage"  Loaded="Page_Loaded">
+      Title="Личный кабинет"  Loaded="Page_Loaded">
 
     <Grid>
 

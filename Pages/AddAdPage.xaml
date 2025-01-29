@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Mamontov_02.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddAdPage">
+      Title="Добавление/Редактирование объявлений">
 
     <Grid >
         <!-- Используем Grid с 2 колонками -->

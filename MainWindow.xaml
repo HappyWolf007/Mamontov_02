@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mamontov_02"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1070" WindowStartupLocation="CenterScreen">
+        Title="Сервис объявлений" Height="650" Width="1070" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="51"/>

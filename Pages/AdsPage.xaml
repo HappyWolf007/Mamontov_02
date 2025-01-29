@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Mamontov_02.Pages" xmlns:local1="SellerVisibilityConverter"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1070"
-      Title="AdsPage" Loaded="Page_Loaded">
+      Title="Главная страница" Loaded="Page_Loaded">
 
     <Grid >
         <Grid.ColumnDefinitions>
