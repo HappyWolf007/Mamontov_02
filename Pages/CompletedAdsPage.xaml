@@ -67,10 +67,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-       
-
-
-
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="30" Width="768" Grid.ColumnSpan="2" Margin="16,0,0,0">
             <TextBlock x:Name="TotalProfit" Text="Общая прибыль: 0" Grid.Row="1" VerticalAlignment="Center" Height="30" TextAlignment="Center" Width="768" Grid.RowSpan="2"/>
         </StackPanel>

@@ -42,10 +42,11 @@ namespace Mamontov_02
                 BackButton.Visibility = Visibility.Collapsed;
                 MainPageButton.Visibility = Visibility.Collapsed;
             }
-            if (page is AuthPage)
+
+            if ((page is CompletedAdsPage) || (page is AuthPage))
             {
                 PersonalAccountButton.Visibility = Visibility.Collapsed;
-                
+
             }
 
             else

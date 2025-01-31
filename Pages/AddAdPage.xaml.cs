@@ -45,20 +45,18 @@ namespace Mamontov_02.Pages
             }
         }
 
-
-
-
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string adName = NameTextBox.Text;
             string adDescription = DescriptionTextBox.Text;
             string adCostText = CostTextBox.Text;
             string adPhoto = PhotoTextBox.Text;
+           
             string adCity = CityComboBox.Text;
             string adCategory = CategoryComboBox.Text;
             string adAdsType = AdsTypeComboBox.Text;
             string adStatus = StatusComboBox.Text?.ToString();
-
+            if (PhotoTextBox.Text == null) { adPhoto = "NULL"; }
             if (string.IsNullOrEmpty(adName) || string.IsNullOrEmpty(adDescription) || string.IsNullOrEmpty(adCostText) || string.IsNullOrEmpty(adCity) || string.IsNullOrEmpty(adCategory) || string.IsNullOrEmpty(adAdsType))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
@@ -85,7 +83,6 @@ namespace Mamontov_02.Pages
                     var currentAd = db.Ads.Where(x => x.ID == _adToEdit.ID).FirstOrDefault();
                     if (currentAd != null)
                     {
-                        MessageBox.Show($"444");
                         currentAd.Name = adName;
                         currentAd.Description = adDescription;
                         currentAd.Cost = adCost;
@@ -99,7 +96,6 @@ namespace Mamontov_02.Pages
                         NavigationService?.GoBack();
                     }
 
-
                     else
                     {
                         var newAd = new Ads
@@ -111,11 +107,10 @@ namespace Mamontov_02.Pages
                             CategoryID = selectedCategoryID,
                             AdsTypeID = selectedAdsTypeID,
                             CityID = selectedCityID,
-                            IsOpen = isOpen,
+                            IsOpen = true,
                             Seller = CurrentUser.UserName,
                             PublicationDate = DateTime.Now
                         };
-                        MessageBox.Show($"Saving Ad: {adName}, {adDescription}, {adCost}, {adPhoto}, {adCity}, {adCategory}, {adAdsType}, {isOpen}");
                         db.Ads.Add(newAd);
                         db.SaveChanges();
                         MessageBox.Show("Объявление добавлено.");
@@ -124,7 +119,6 @@ namespace Mamontov_02.Pages
                 }
             }
         }
-
 
         private int ReturnCity(string addCity)
         {

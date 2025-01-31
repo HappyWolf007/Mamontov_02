@@ -116,7 +116,7 @@ namespace Mamontov_02.Pages
 
         private void DeleteButton_Loaded(object sender, RoutedEventArgs e)
         {
-            if (IsAuth.isAuth || CurrentUser.UserName == null)
+            if (IsAuth.isAuth || CurrentUser.UserName != null)
             {
                 var button = sender as Button;
                 var ad = button?.DataContext as Ads;
@@ -194,16 +194,14 @@ namespace Mamontov_02.Pages
 
         private void AdsListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (IsAuth.isAuth)
+            if (IsAuth.isAuth && CurrentUser.UserName != null)
             {
                 var selectedAd = AdsListView.SelectedItem as Ads; 
-                if (selectedAd != null)
+                if (selectedAd.Seller == CurrentUser.UserName)
                 {
                     NavigationService?.Navigate(new AddAdPage(selectedAd));
                 }
             }
-           
-            
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
