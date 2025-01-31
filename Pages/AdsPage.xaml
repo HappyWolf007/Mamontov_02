@@ -76,8 +76,8 @@
 
                         <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="250" Grid.Row="6" HorizontalAlignment="Center" FontSize="12" Text="{Binding Seller}" FontFamily="Tw Cen MT"/>
                        
-                        <Button Name="EditAdButton" Content="Удалить" Width="130" Height="30" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                        Click="EditAdButton_Click" Loaded="EditAdButton_Loaded"/>
+                        <Button Name="DeleteButton" Content="Удалить" Width="130" Height="30" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                        Click="DeleteButton_Click" Loaded="DeleteButton_Loaded"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

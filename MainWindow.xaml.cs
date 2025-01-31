@@ -18,21 +18,16 @@ using Mamontov_02.Pages;
 
 namespace Mamontov_02
 {
-
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
             this.Closing += MainWindow_Closing;
-            
         }
-
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
             if (MainFrame.CanGoBack) MainFrame.GoBack();
         }
 
@@ -47,9 +42,18 @@ namespace Mamontov_02
                 BackButton.Visibility = Visibility.Collapsed;
                 MainPageButton.Visibility = Visibility.Collapsed;
             }
+            if (page is AuthPage)
+            {
+                PersonalAccountButton.Visibility = Visibility.Collapsed;
+                
+            }
+
             else
+            {
+                PersonalAccountButton.Visibility = Visibility.Visible;
                 BackButton.Visibility = Visibility.Visible;
-            
+                MainPageButton.Visibility = Visibility.Visible;
+            }
         }
       
         private void PersonalAccountButton_Click(object sender, RoutedEventArgs e)
@@ -66,9 +70,7 @@ namespace Mamontov_02
         } 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
             MessageBoxResult result = MessageBox.Show("Вы действительно хотите выйти из приложения?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
 
             if (result == MessageBoxResult.No)
             {

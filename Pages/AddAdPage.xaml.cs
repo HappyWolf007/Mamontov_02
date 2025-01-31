@@ -45,7 +45,7 @@ namespace Mamontov_02.Pages
             }
         }
 
-        
+
 
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace Mamontov_02.Pages
             string adCategory = CategoryComboBox.Text;
             string adAdsType = AdsTypeComboBox.Text;
             string adStatus = StatusComboBox.Text?.ToString();
-            if(PhotoTextBox.Text == null) { adPhoto = "NULL"; }
+
             if (string.IsNullOrEmpty(adName) || string.IsNullOrEmpty(adDescription) || string.IsNullOrEmpty(adCostText) || string.IsNullOrEmpty(adCity) || string.IsNullOrEmpty(adCategory) || string.IsNullOrEmpty(adAdsType))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.");
@@ -72,13 +72,11 @@ namespace Mamontov_02.Pages
                 return;
             }
 
-
-
             var selectedCityID = ReturnCity(adCity);
             var selectedCategoryID = ReturnCategory(adCategory);
             var selectedAdsTypeID = ReturnAdsType(adAdsType);
-
             bool isOpen = adStatus == "Активно" ? true : false;
+
 
             using (var db = new Entities())
             {
@@ -87,6 +85,7 @@ namespace Mamontov_02.Pages
                     var currentAd = db.Ads.Where(x => x.ID == _adToEdit.ID).FirstOrDefault();
                     if (currentAd != null)
                     {
+                        MessageBox.Show($"444");
                         currentAd.Name = adName;
                         currentAd.Description = adDescription;
                         currentAd.Cost = adCost;
@@ -96,38 +95,36 @@ namespace Mamontov_02.Pages
                         currentAd.CityID = selectedCityID;
                         currentAd.IsOpen = isOpen;
                         db.SaveChanges();
-                        
                         MessageBox.Show("Объявление обновлено.");
-                        NavigationService?.GoBack(); 
+                        NavigationService?.GoBack();
                     }
+
+
                     else
                     {
-                        MessageBox.Show("Объявление не найдено.");
+                        var newAd = new Ads
+                        {
+                            Name = adName,
+                            Description = adDescription,
+                            Cost = adCost,
+                            Photo = adPhoto,
+                            CategoryID = selectedCategoryID,
+                            AdsTypeID = selectedAdsTypeID,
+                            CityID = selectedCityID,
+                            IsOpen = isOpen,
+                            Seller = CurrentUser.UserName,
+                            PublicationDate = DateTime.Now
+                        };
+                        MessageBox.Show($"Saving Ad: {adName}, {adDescription}, {adCost}, {adPhoto}, {adCity}, {adCategory}, {adAdsType}, {isOpen}");
+                        db.Ads.Add(newAd);
+                        db.SaveChanges();
+                        MessageBox.Show("Объявление добавлено.");
+                        NavigationService?.GoBack();
                     }
-                }
-                else 
-                {
-                    var newAd = new Ads
-                    {
-                        Name = adName,
-                        Description = adDescription,
-                        Cost = adCost,
-                        Photo = adPhoto,
-                        CategoryID = selectedCategoryID,
-                        AdsTypeID = selectedAdsTypeID,
-                        CityID = selectedCityID,
-                        IsOpen = isOpen,
-                        PublicationDate = DateTime.Now
-                    };
-
-                    db.Ads.Add(newAd);
-                    db.SaveChanges();
-                    MessageBox.Show("Объявление добавлено.");
-                    NavigationService?.GoBack();  
                 }
             }
         }
-    
+
 
         private int ReturnCity(string addCity)
         {

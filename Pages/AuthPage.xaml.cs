@@ -1,29 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Mamontov_02.Pages
 {
- 
     public partial class AuthPage : Page
     {
         public AuthPage()
         {
             InitializeComponent();
         }
-
         private void ButtonEnter_Click(object sender, RoutedEventArgs e)
         {
 
@@ -33,11 +21,8 @@ namespace Mamontov_02.Pages
                 return;
             }
 
-
-
             using (var db = new Entities()) 
-            {
-               
+            {           
                 var user = db.User
                              .FirstOrDefault(u => u.Username == TextBoxLogin.Text && u.Password == PasswordBox.Password);
 
@@ -50,7 +35,7 @@ namespace Mamontov_02.Pages
                 else
                 {
                     CurrentUser.UserName = user.Username;
-                    NavigationService?.Navigate(new AdsPage()); 
+                    NavigationService?.Navigate(new CompletedAdsPage()); 
                     IsAuth.isAuth=true;
                 }
             }
@@ -70,9 +55,7 @@ namespace Mamontov_02.Pages
         private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
         {   if(PasswordBox.Password.Length > 0) 
                 txtHintPassword.Visibility = Visibility.Hidden;
-        }
-
-    
+        }    
     }
 }
 

@@ -92,7 +92,7 @@ namespace Mamontov_02.Pages
 
        
 
-        private void EditAdButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedAd = (sender as Button)?.DataContext as Ads;
             if (selectedAd != null)
@@ -114,7 +114,7 @@ namespace Mamontov_02.Pages
             }
         }
 
-        private void EditAdButton_Loaded(object sender, RoutedEventArgs e)
+        private void DeleteButton_Loaded(object sender, RoutedEventArgs e)
         {
             if (IsAuth.isAuth || CurrentUser.UserName == null)
             {

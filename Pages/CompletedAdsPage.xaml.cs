@@ -24,12 +24,25 @@ namespace Mamontov_02.Pages
             UpdateAds();
         }
 
-        private void EditAdButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedAd = (sender as Button)?.DataContext as Ads;
             if (selectedAd != null)
             {
-                NavigationService?.Navigate(new AddAdPage(selectedAd));
+                var result = MessageBox.Show("Вы уверены, что хотите удалить это объявление?", "Удалить объявление", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    var adToDelete = Entities.GetContext().Ads.FirstOrDefault(a => a.ID == selectedAd.ID);
+                    if (adToDelete != null)
+                    {
+                        Entities.GetContext().Ads.Remove(adToDelete);
+                        Entities.GetContext().SaveChanges();
+
+
+                        UpdateAds();
+                    }
+                }
             }
         }
 
